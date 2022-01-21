@@ -19,7 +19,7 @@
 
 # How to implement
 - We want to decouple data access from controllers
-- Create Infrastructure Class Library
+- Create Infrastructure Class Library (should also contain your `DbContext`)
     - Add `Repositories` folder
 - Inside the folder create `IRepository` [[interface]] which will be used to dictate a contract with the repository.
     - This interface is in charge of the CRUD operations we want to perform with the data.
@@ -41,4 +41,6 @@
     - Add the required definitions for the [[generic methods]] in the `GenericRepository.cs` of how to work with the database.
         - For example `Add` method, return the entity after its been added to the context.
         - If you want to create subclasses for additional functionality, you will need to make these [[virtual methods]].
-- 
+- Extending the generic repository ([See this branch here for example]())
+    - Create new repository for each model and put inside repository folder.
+    - Set the base as the generic repository and you can override any generic functionality by re-defining the method with `override` keyword.
