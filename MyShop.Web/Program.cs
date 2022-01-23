@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyShop.Domain.Models;
 using MyShop.Infrastructure;
+using MyShop.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,9 @@ builder.Services.AddControllers(options => options.EnableEndpointRouting = false
 CreateInitialDatabase();
 
 builder.Services.AddTransient<ShoppingContext>();
+builder.Services.AddTransient<IRepository<Order>, OrderRepository>();
+builder.Services.AddTransient<IRepository<Product>, ProductRepository>();
+builder.Services.AddTransient<IRepository<Customer>, CustomerRepository>();
 
 var app = builder.Build();
 
