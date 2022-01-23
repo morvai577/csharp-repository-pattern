@@ -54,3 +54,14 @@
 - Now you have a consuumer that no longer knows anything about what db is beising used and how its being used.
 - Note: You can pass a real, fake or mock `IRepository` into the consumer.
 - Note: Adding more layers is not always better.
+
+[See this branch here for example](https://github.com/morvai577/csharp-repository-pattern/tree/2022-01-23-Consuming-a-Repository)
+
+# Testing with the Repository Pattern
+- As controllers no longer know what or how the data access layer works, we can inject a fake or mock version of the repositories and mock away the communication with the underlying data structure.
+- For example, invoking create order endpoint:
+  ![[Pasted image 20220123144507.png]]
+- Use [[moq]] technique to create fake instances of repositories in unit tests.
+- By decoupling the consumer and data layer, we can safely write tests without worrying about side effects.
+
+[See this branch here for example]()
