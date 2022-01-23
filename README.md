@@ -41,6 +41,16 @@
     - Add the required definitions for the [[generic methods]] in the `GenericRepository.cs` of how to work with the database.
         - For example `Add` method, return the entity after its been added to the context.
         - If you want to create subclasses for additional functionality, you will need to make these [[virtual methods]].
-- Extending the generic repository ([See this branch here for example]())
+- Extending the generic repository ([See this branch here for example](https://github.com/morvai577/csharp-repository-pattern/tree/2022-01-21-Extending-the-Generic-Repository))
     - Create new repository for each model and put inside repository folder.
     - Set the base as the generic repository and you can override any generic functionality by re-defining the method with `override` keyword.
+
+## Consuming a repository
+- You need to decouple the data access layer from the consumer (e.g. Controller).
+- Whichever data your consumer needs to access, import it into your consumer by importing its `IRepository` variant e.g. `orderRepository` .
+- Now implement your consumer's methods in such a way that they only rely on the imported repositories.
+- Finally, you need to use [[dependency injection]] to set the imported repository interfaces to instances of the concrecte implementations of the respoective repositoriues.
+    - In `ASP.NET` project, you will need to update the `Startup.cs` or `Program.cs` (For .NET 6) for this.
+- Now you have a consuumer that no longer knows anything about what db is beising used and how its being used.
+- Note: You can pass a real, fake or mock `IRepository` into the consumer.
+- Note: Adding more layers is not always better.
